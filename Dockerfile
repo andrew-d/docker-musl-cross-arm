@@ -27,6 +27,9 @@ RUN mkdir /build &&                                                 \
     echo 'GCC_CONFFLAGS="--with-arch=armv6 --with-float=hard --with-fpu=vfp"' >> config.sh && \
     echo 'GCC_BUILTIN_PREREQS=yes'                  >> config.sh && \
     sed -i -e "s/^MUSL_VERSION=.*\$/MUSL_VERSION=$MUSL_VERSION/" defs.sh && \
-    ./build.sh
+    ./build.sh &&                                                   \
+    cd / &&                                                         \
+    apt-get clean &&                                                \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /build
 
 CMD /bin/bash
